@@ -13,7 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ClujliveController {
     @RequestMapping("/")
     @GetMapping
-    public Place index() {
-        return new Place("TestPlace", 46.7695316f, 23.5966936f);
+    public Place[] index() {
+        Place[] place_holder = new Place[2];
+        place_holder[0] = new Place("TestPlace", 46.7695316f, 23.5966936f);
+        place_holder[1] = new Place("TestPlace2", 46.7605316f, 23.5966936f);
+        return place_holder;
     }
 }
