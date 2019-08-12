@@ -23,10 +23,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.getCenter();
+    this.getPlaces();
   }
 
-  async getCenter() {
+  async getPlaces() {
     const places = await Axios.get("http://localhost:8080/").then(response => {
       return Promise.resolve(response.data);
     }).then(responseData => {
