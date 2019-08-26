@@ -1,6 +1,12 @@
 package com.rotarit.clujlive.models;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Place {
+    @Id
+    private Integer id;
     private String name;
     private float latitude;
     private float longitude;
@@ -14,6 +20,14 @@ public class Place {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+
+    public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
     public String getName() {
         return this.name;

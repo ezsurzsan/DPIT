@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
-// import mapSkins from './GoogleMapStyles.json';
+import mapSkins from './GoogleMapStyles.json';
 
 const MapMarker = require('./GoogleMapMarker.svg')
 
@@ -69,5 +69,6 @@ class MapContainer extends React.Component {
 }
 
 export default GoogleApiWrapper({
+  mapOptions: mapSkins,
   apiKey: 'AIzaSyDve3P1vFG6yiaSqlIyGC_Zr1wIeRov56Q'
 })(MapContainer);

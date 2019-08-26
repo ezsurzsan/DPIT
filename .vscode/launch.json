@@ -1,0 +1,11 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "CodeLens (Launch) - ClujliveApplication",
+      "request": "launch",
+      "mainClass": "com.rotarit.clujlive.ClujliveApplication",
+      "projectName": "clujlive"
+    }
+  ]
+}
