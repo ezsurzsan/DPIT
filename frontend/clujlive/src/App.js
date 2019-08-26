@@ -34,7 +34,7 @@ class App extends Component {
       // TODO
       // return N amount of responses
       // where to call the Google API?
-      return [{ lat: responseData[0].latitute, lng: responseData[0].longitude, name: responseData[0].name}, { lat: responseData[1].latitute, lng: responseData[1].longitude, name: responseData[1].name}]
+      return responseData
     })
     console.log({places})
     this.setState({ places: places })

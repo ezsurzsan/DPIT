@@ -37,11 +37,11 @@ public class Place {
         this.name = name;
     }
 
-    public float getLatitute() {
+    public float getLatitude() {
         return this.latitude;
     }
 
-    public void setLatitute(float latitude) {
+    public void setLatitude(float latitude) {
         this.latitude = latitude;
     }
 

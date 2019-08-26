@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Map, GoogleApiWrapper, Marker, InfoWindow } from 'google-maps-react';
 import mapSkins from './GoogleMapStyles.json';
 
@@ -36,7 +36,7 @@ class MapContainer extends React.Component {
     return (
       <Map
         google={this.props.google}
-        zoom={18}
+        zoom={10}
         style={mapStyles}
         initialCenter={{ lat: 46.7695316, lng: 23.5966936 }}
         // defaultOptions={mapSkins}
@@ -46,7 +46,7 @@ class MapContainer extends React.Component {
           return (
             <Marker
               name={marker.name}
-              position={{ lat: marker.lat, lng: marker.lng }}
+              position={{ lat: marker.latitude, lng: marker.longitude }}
               icon={{
                 url: MapMarker,
                 scaledSize: new this.props.google.maps.Size(64, 64)
