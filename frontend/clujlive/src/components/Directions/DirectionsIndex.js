@@ -3,16 +3,18 @@ import { compose, withProps } from "recompose";
 import DirectionRenderComponent from "./DirectionRenderComponent";
 import { G_API_URL } from "../../utility/constants";
 import mapStyles from "../../GoogleMapStyles.json"
+import { Marker } from "react-google-maps";
 
 const { withScriptjs, withGoogleMap, GoogleMap } = require("react-google-maps");
+const MapMarker = require('../../GoogleMapMarker.svg')
 
 class Directions extends Component {
   state = {
     defaultZoom: 14,
     map: null,
     center: {
-      lat: 46.76,
-      lng: 23.6
+      lat: 46.769,
+      lng: 23.5964
     }
   };
   render() {
@@ -20,18 +22,34 @@ class Directions extends Component {
       <GoogleMap
         defaultZoom={this.state.defaultZoom}
         center={this.state.center}
-        options={{styles: mapStyles}}
+        options={{ styles: mapStyles }}
       >
-        {this.props.places.map(place => {
-          return (
-            <DirectionRenderComponent 
-            key={place.id}
-            index={place.id}
-            from={ {fromTitle:place.name, lat:place.latitude, lng:place.longitude} }
-            to={ {toTitle:place.name + 'x', lat:place.latitude+ 0.2, lng:place.longitude+ 0.2} }
-            />
-          )
-        })}
+        <Marker
+          defaultIcon={{
+            url: MapMarker,
+            // look for size in documentation
+          }}
+          position={{
+            lat: this.props.places[0].latitude,
+            lng: this.props.places[0].longitude
+          }}
+        />
+        <Marker
+          defaultIcon={{
+            url: MapMarker,
+            // look for size in documentation
+          }}
+          position={{
+            lat: this.props.places[1].latitude,
+            lng: this.props.places[1].longitude
+          }}
+        />
+          <DirectionRenderComponent
+            key={this.props.places[0].id}
+            index={this.props.places[0].id}
+            from={{ fromTitle: this.props.places[0].name, lat: this.props.places[0].latitude, lng: this.props.places[0].longitude }}
+            to={{ toTitle: this.props.places[1].name, lat: this.props.places[1].latitude, lng: this.props.places[1].longitude}}
+          />
       </GoogleMap>
     );
   }

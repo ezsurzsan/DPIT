@@ -28,6 +28,7 @@ class App extends Component {
       // TODO
       // return N amount of responses
       // where to call the Google API?
+      
       return responseData
     })
     console.log({places})

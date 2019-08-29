@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { convertLatLngToObj } from "../../utility/helper";
-const { Marker, DirectionsRenderer } = require("react-google-maps");
-const MapMarker = require('../../GoogleMapMarker.svg')
+const { DirectionsRenderer } = require("react-google-maps");
 
 class DirectionRenderComponent extends Component {
   state = {
@@ -88,40 +87,10 @@ class DirectionRenderComponent extends Component {
     }, 1000);
   };
   render() {
-    let originMarker = null;
-    let destinationMarker = null;
-    if (this.state.directions && this.props.index) {
-      originMarker = (
-        <Marker
-          defaultlabel={null}
-          defaultIcon={{
-            url: MapMarker,
-            // look for size in documentation
-          }}
-          position={{
-            lat: parseFloat(this.props.from.lat),
-            lng: parseFloat(this.props.from.lng)
-          }}
-        />
-      );
-      destinationMarker = (
-        <Marker
-          defaultlabel={null}
-          defaultIcon={{
-            url: MapMarker,
-            // look for size in documentation
-          }}
-          position={{
-            lat: parseFloat(this.props.to.lat),
-            lng: parseFloat(this.props.to.lng)
-          }}
-        />
-      );
-    }
     return (
       <div>
-        {originMarker}
-        {destinationMarker}
+        {/* {originMarker}
+        {destinationMarker} */}
         {this.state.directions && (
           <DirectionsRenderer
             directions={this.state.directions}

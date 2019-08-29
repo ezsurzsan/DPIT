@@ -1,15 +1,18 @@
 package com.rotarit.clujlive.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Place {
     @Id
+    @GeneratedValue
     private Integer id;
     private String name;
     private float latitude;
     private float longitude;
+    private String googleID;
 
     public Place() {
 
@@ -52,5 +55,13 @@ public class Place {
 
     public void setLongitude(float longitude) {
         this.longitude = longitude;
+    }
+
+    public String getGoogleID() {
+        return googleID;
+    }
+
+    public void setGoogleID(String googleID) {
+        this.googleID = googleID;
     }
 }
