@@ -8,11 +8,11 @@ const { withScriptjs, withGoogleMap, GoogleMap } = require("react-google-maps");
 
 class Directions extends Component {
   state = {
-    defaultZoom: 5,
+    defaultZoom: 14,
     map: null,
     center: {
-      lat: 23.217724,
-      lng: 72.667216
+      lat: 46.76,
+      lng: 23.6
     }
   };
   render() {
@@ -20,27 +20,13 @@ class Directions extends Component {
       <GoogleMap
         defaultZoom={this.state.defaultZoom}
         center={this.state.center}
-        defaultCenter={new window.google.maps.LatLng(23.21632, 72.641219)}
         options={{styles: mapStyles}}
       >
-        {/* {DummyLocations.map((elem, index) => {
-          return (
-            <DirectionRenderComponent
-              key={index}
-              index={index + 1}
-              strokeColor={elem.strokeColor}
-              from={elem.from}
-              to={elem.to}
-            />
-          );
-        })} */}
         {this.props.places.map(place => {
           return (
             <DirectionRenderComponent 
-            
             key={place.id}
             index={place.id}
-            strokeColor={'#f68f54'}
             from={ {fromTitle:place.name, lat:place.latitude, lng:place.longitude} }
             to={ {toTitle:place.name + 'x', lat:place.latitude+ 0.2, lng:place.longitude+ 0.2} }
             />

@@ -122,26 +122,13 @@ class DirectionRenderComponent extends Component {
       <div>
         {originMarker}
         {destinationMarker}
-        {/* {this.state.currentLocation && (
-          <Marker
-          defaultlabel={null}
-            defaultIcon={{
-              url: MapMarker,
-              // look for size in documentation
-            }}
-            position={{
-              lat: this.state.currentLocation.lat,
-              lng: this.state.currentLocation.lng
-            }}
-          />
-        )} */}
         {this.state.directions && (
           <DirectionsRenderer
             directions={this.state.directions}
             options={{
               polylineOptions: {
-                storkeColor: this.props.storkeColor,
-                strokeOpacity: 0.4,
+                strokeColor: '#40FFA0',
+                strokeOpacity: 1,
                 strokeWeight: 4
               },
               preserveViewport: true,
