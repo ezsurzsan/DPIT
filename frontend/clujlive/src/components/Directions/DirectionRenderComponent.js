@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { convertLatLngToObj } from "../../utility/helper";
-
 const { Marker, DirectionsRenderer } = require("react-google-maps");
 const MapMarker = require('../../GoogleMapMarker.svg')
 

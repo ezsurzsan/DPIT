@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { compose, withProps } from "recompose";
 import DirectionRenderComponent from "./DirectionRenderComponent";
 import { G_API_URL } from "../../utility/constants";
-import DummyLocations from "../../utility/dummyLocations";
 import mapStyles from "../../GoogleMapStyles.json"
 
 const { withScriptjs, withGoogleMap, GoogleMap } = require("react-google-maps");
