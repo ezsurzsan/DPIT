@@ -24,7 +24,7 @@ class Directions extends Component {
         defaultCenter={new window.google.maps.LatLng(23.21632, 72.641219)}
         options={{styles: mapStyles}}
       >
-        {DummyLocations.map((elem, index) => {
+        {/* {DummyLocations.map((elem, index) => {
           return (
             <DirectionRenderComponent
               key={index}
@@ -34,6 +34,18 @@ class Directions extends Component {
               to={elem.to}
             />
           );
+        })} */}
+        {this.props.places.map(place => {
+          return (
+            <DirectionRenderComponent 
+            
+            key={place.id}
+            index={place.id}
+            strokeColor={'#f68f54'}
+            from={ {fromTitle:place.name, lat:place.latitude, lng:place.longitude} }
+            to={ {toTitle:place.name + 'x', lat:place.latitude+ 0.2, lng:place.longitude+ 0.2} }
+            />
+          )
         })}
       </GoogleMap>
     );

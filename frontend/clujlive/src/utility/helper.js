@@ -1,3 +1,9 @@
+const convertObjToLatLng = (place) => {
+  return {
+    
+  }
+}
+
 const convertLatLngToObj = (lat, lng) => {
   return {
     lat,

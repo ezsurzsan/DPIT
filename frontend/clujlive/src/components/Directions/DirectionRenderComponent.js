@@ -123,7 +123,7 @@ class DirectionRenderComponent extends Component {
       <div>
         {originMarker}
         {destinationMarker}
-        {this.state.currentLocation && (
+        {/* {this.state.currentLocation && (
           <Marker
           defaultlabel={null}
             defaultIcon={{
@@ -135,7 +135,7 @@ class DirectionRenderComponent extends Component {
               lng: this.state.currentLocation.lng
             }}
           />
-        )}
+        )} */}
         {this.state.directions && (
           <DirectionsRenderer
             directions={this.state.directions}
