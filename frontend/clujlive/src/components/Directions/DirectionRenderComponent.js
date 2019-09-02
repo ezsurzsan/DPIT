@@ -89,8 +89,6 @@ class DirectionRenderComponent extends Component {
   render() {
     return (
       <div>
-        {/* {originMarker}
-        {destinationMarker} */}
         {this.state.directions && (
           <DirectionsRenderer
             directions={this.state.directions}
