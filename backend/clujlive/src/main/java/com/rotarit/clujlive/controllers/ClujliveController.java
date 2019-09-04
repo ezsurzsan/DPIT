@@ -29,13 +29,15 @@ public class ClujliveController {
 
     @RequestMapping("/place")
     @GetMapping
-    public JSONObject placeInfo() {
-        try {
-           return google.makeRequest();
+    public String placeInfo() {
+        try {   
+            JSONObject temp = google.makeRequest("ChIJu-gzUZ0OSUcRBeJI7iWn1ws");
+            System.out.println(temp);
+            return temp.toString(); // this response is a valid JSON
         } catch (Exception e) {
             // TODO Auto-generated catch block
              e.printStackTrace();
-             return new JSONObject(e.getMessage());
+             return e.getMessage();
         }
     }
 }

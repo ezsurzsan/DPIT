@@ -14,29 +14,23 @@ import org.springframework.stereotype.Service;
 public class GooglePlacesClient {
     // private static final String GOOGLE_API_KEY = "AIzaSyDve3P1vFG6yiaSqlIyGC_Zr1wIeRov56Q";
 
-    public JSONObject makeRequest()  throws Exception {
-        URL url = new URL(
-                "https://maps.googleapis.com/maps/api/place/details/json?placeid=ChIJu-gzUZ0OSUcRBeJI7iWn1ws&key=AIzaSyDve3P1vFG6yiaSqlIyGC_Zr1wIeRov56Q");
+    public JSONObject makeRequest(String placeID)  throws Exception {
+        // TODO: add id prop
+        String key = "AIzaSyDve3P1vFG6yiaSqlIyGC_Zr1wIeRov56Q";
+        URL url = new URL("https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID + "&key=" + key);
         HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
         con.setRequestMethod("GET");
         BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-        String inputLine;
         StringBuilder stringBuilder = new StringBuilder();
-        StringBuffer content = new StringBuffer();
-        // while ((inputLine = in.readLine()) != null) {
-        //     content.append(inputLine);
-        // }
-        String b;
-        while((b = in.readLine()) != null) {
-            stringBuilder.append(b);
+        String tempLine;
+        while((tempLine = in.readLine()) != null) {
+            stringBuilder.append(tempLine);
         }
         JSONObject rawJSON = new JSONObject(stringBuilder.toString());
         JSONObject resultJSON = rawJSON.getJSONObject("result");
-        // resultJSON.get
-        // System.out.println(new JSONObject(content.toString()));
-        System.out.println(rawJSON);
-        // new GooglePlace(result.getString(rating));
+        // System.out.println(resultJSON);
         in.close();
+        con.disconnect();
         return resultJSON;
     }
 

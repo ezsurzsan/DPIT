@@ -25,10 +25,6 @@ class App extends Component {
       return Promise.resolve(response.data);
     }).then(responseData => {
       console.log(responseData);
-      // TODO
-      // return N amount of responses
-      // where to call the Google API?
-
       return responseData
     })
     console.log({places})
