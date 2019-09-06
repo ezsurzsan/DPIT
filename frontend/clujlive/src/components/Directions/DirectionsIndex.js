@@ -23,6 +23,7 @@ class Directions extends Component {
       },
       rating: []
     }
+    // this.onClick = this.onClick.bind(this);
   }
   render() {
     const onClickAction = function () {
@@ -65,19 +66,19 @@ class Directions extends Component {
             to={{ toTitle: this.props.places[1].name, lat: this.props.places[1].latitude, lng: this.props.places[1].longitude }}
           />
         </GoogleMap>
-        <button name={"button"} onClick={this.getRating(this)} />
+        <button name={"button"} onClick={()=>this.getRating()} />
       </div>
     );
   }
-  async getRating(that) {
+  async getRating() {
     const response = await Axios.get("http://localhost:8080/rating").then(response => {
       return Promise.resolve(response.data);
     }).then(responseData => {
       console.log(responseData);
-      return responseData
+      // return responseData
     })
     console.log("rating: " + parseFloat(response))
-    that.setState({ rating: parseFloat(response) })
+    this.setState({ rating: parseFloat(response) })
   }
 }
 
