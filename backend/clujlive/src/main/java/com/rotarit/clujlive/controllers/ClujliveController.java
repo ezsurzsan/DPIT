@@ -43,7 +43,7 @@ public class ClujliveController {
 
     @RequestMapping("/rating")
     @GetMapping
-    public float placeRating() {
+    public float placeRating(String placeID) {
         try {   
             float temp = google.makeRatingRequest("ChIJu-gzUZ0OSUcRBeJI7iWn1ws");
             System.out.println(temp);
