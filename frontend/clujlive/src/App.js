@@ -24,10 +24,8 @@ class App extends Component {
     const places = await Axios.get("http://localhost:8080/").then(response => {
       return Promise.resolve(response.data);
     }).then(responseData => {
-      console.log(responseData);
       return responseData
     })
-    console.log({places})
     this.setState({ places: places })
   }
 }

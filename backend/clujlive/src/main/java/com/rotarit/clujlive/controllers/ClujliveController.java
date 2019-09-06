@@ -40,4 +40,18 @@ public class ClujliveController {
              return e.getMessage();
         }
     }
+
+    @RequestMapping("/rating")
+    @GetMapping
+    public float placeRating() {
+        try {   
+            float temp = google.makeRatingRequest("ChIJu-gzUZ0OSUcRBeJI7iWn1ws");
+            System.out.println(temp);
+            return temp;
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+             e.printStackTrace();
+             return -1;
+        }
+    }
 }
