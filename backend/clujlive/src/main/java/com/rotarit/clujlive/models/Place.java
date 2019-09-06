@@ -13,9 +13,54 @@ public class Place {
     private float latitude;
     private float longitude;
     private String googleID;
+    private String type;
+    private String website;
+    private String ialocLink;
+    private String menuLink;
+    private Integer popularity; // placeholder data
 
     public Place() {
 
+    }
+
+    public Integer getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(Integer popularity) {
+        this.popularity = popularity;
+    }
+
+    public String getMenuLink() {
+        return menuLink;
+    }
+
+    public void setMenuLink(String menuLink) {
+        this.menuLink = menuLink;
+    }
+
+    public String getIalocLink() {
+        return ialocLink;
+    }
+
+    public void setIalocLink(String ialocLink) {
+        this.ialocLink = ialocLink;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Place(String name, float latitude, float longitude) {
@@ -23,6 +68,8 @@ public class Place {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+    
+    
 
     public Integer getId() {
 		return id;

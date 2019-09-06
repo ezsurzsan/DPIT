@@ -5,6 +5,7 @@ import { G_API_URL } from "../../utility/constants";
 import mapStyles from "../../GoogleMapStyles.json"
 import { Marker } from "react-google-maps";
 import Axios from 'axios';
+import InfoWindowMap from "../InfoWindowMap";
 
 // import GetPlaceDetails from "../../actions/GetPlaceDetails";
 
@@ -37,7 +38,16 @@ class Directions extends Component {
           center={this.state.center}
           options={{ styles: mapStyles }}
         >
-          <Marker
+          <InfoWindowMap
+            key={0}
+            lat={this.props.places[0].latitude}
+            lng={this.props.places[0].longitude}
+            index={1}
+            // location={location}
+            // indexValue={index}
+            // venueID={venueID}
+          />
+          {/* <Marker
             defaultIcon={{
               url: MapMarker,
               // look for size in documentation
@@ -56,8 +66,8 @@ class Directions extends Component {
               lat: this.props.places[1].latitude,
               lng: this.props.places[1].longitude
             }}
-            // onClick={this.getRating(this)}
-          />
+          // onClick={this.getRating(this)}
+          /> */}
           <DirectionRenderComponent
             key={this.props.places[0].id}
             index={this.props.places[0].id}
