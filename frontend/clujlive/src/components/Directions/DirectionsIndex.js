@@ -26,6 +26,7 @@ class Directions extends Component {
     }
     // this.onClick = this.onClick.bind(this);
   }
+
   render() {
     const onClickAction = function () {
       console.log("OnClick");
@@ -39,44 +40,48 @@ class Directions extends Component {
           center={this.state.center}
           options={{ styles: mapStyles }}
         >
-          <InfoWindowMap
-            key={0}
-            lat={this.props.places[0].latitude}
-            lng={this.props.places[0].longitude}
-            index={1}
-            // location={location}
-            // indexValue={index}
-            // venueID={venueID}
-          />
+          {
+            this.props.places.map(place => {
+              return (
+                < InfoWindowMap
+                  key={place.id}
+                  lat={place.latitude}
+                  lng={place.longitude}
+                  index={place.id}
+                  name={place.name}
+                  icon={MapMarker}
+                />
+              )
+            })}
           {/* <Marker
-            defaultIcon={{
-              url: MapMarker,
-              // look for size in documentation
-            }}
+             defaultIcon={{
+               url: MapMarker,
+               // look for size in documentation
+             }}
+             position={{
+               lat: this.props.places[0].latitude,
+               lng: this.props.places[0].longitude
+             }}
+           />
+           <Marker
+             defaultIcon={{
+               url: MapMarker,
+               // look for size in documentation
+             }}
             position={{
-              lat: this.props.places[0].latitude,
-              lng: this.props.places[0].longitude
-            }}
-          />
-          <Marker
-            defaultIcon={{
-              url: MapMarker,
-              // look for size in documentation
-            }}
-            position={{
-              lat: this.props.places[1].latitude,
-              lng: this.props.places[1].longitude
-            }}
-          // onClick={this.getRating(this)}
-          /> */}
-          <DirectionRenderComponent
-            key={this.props.places[0].id}
-            index={this.props.places[0].id}
-            from={{ fromTitle: this.props.places[0].name, lat: this.props.places[0].latitude, lng: this.props.places[0].longitude }}
-            to={{ toTitle: this.props.places[1].name, lat: this.props.places[1].latitude, lng: this.props.places[1].longitude }}
-          />
+               lat: this.props.places[1].latitude,
+               lng: this.props.places[1].longitude
+             }}
+           onClick={this.getRating(this)}
+           /> */}
+          {/* <DirectionRenderComponent
+             key={this.props.places[0].id}
+             index={this.props.places[0].id}
+             from={{ fromTitle: this.props.places[0].name, lat: this.props.places[0].latitude, lng: this.props.places[0].longitude }}
+             to={{ toTitle: this.props.places[1].name, lat: this.props.places[1].latitude, lng: this.props.places[1].longitude }}
+           /> */}
         </GoogleMap>
-        <button name={"button"} onClick={()=>this.getRating()} />
+        {/* <button name={"button"} onClick={()=>this.getRating()} /> */}
       </div>
     );
   }

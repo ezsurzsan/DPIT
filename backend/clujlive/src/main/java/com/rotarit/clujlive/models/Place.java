@@ -15,19 +15,19 @@ public class Place {
     private String googleID;
     private String type;
     private String website;
-    private String ialocLink;
+    private String reservationLink;
     private String menuLink;
-    private Integer popularity; // placeholder data
+    private float popularity; // placeholder data
 
     public Place() {
 
     }
 
-    public Integer getPopularity() {
+    public float getPopularity() {
         return popularity;
     }
 
-    public void setPopularity(Integer popularity) {
+    public void setPopularity(float popularity) {
         this.popularity = popularity;
     }
 
@@ -39,12 +39,12 @@ public class Place {
         this.menuLink = menuLink;
     }
 
-    public String getIalocLink() {
-        return ialocLink;
+    public String getReservationLink() {
+        return reservationLink;
     }
 
-    public void setIalocLink(String ialocLink) {
-        this.ialocLink = ialocLink;
+    public void setReservationLink(String reservationLink) {
+        this.reservationLink = reservationLink;
     }
 
     public String getWebsite() {

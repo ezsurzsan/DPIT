@@ -27,17 +27,19 @@ class InfoWindowMap extends Component {
 	render() {
 
 		return (
+
 			<Marker
 				key={this.props.index}
 				position={{ lat: this.props.lat, lng: this.props.lng }}
 				label={this.props.index.toString()}
 				onClick={() => this.handleToggleOpen()}
+				icon={this.props.icon}
 			>
 
 				{
 					this.state.isOpen &&
 					<InfoWindow onCloseClick={this.props.handleCloseCall}>
-						{/* <h1>{this.props.location.venue.name}</h1> */}
+						<h1>{this.props.name}</h1>
 					</InfoWindow>
 				}
 
