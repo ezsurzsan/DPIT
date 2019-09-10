@@ -6,7 +6,6 @@ import "./App.css";
 class App extends Component {
   constructor(props) {
     super(props)
-    // get places into this list using the Google API, hardcoded example
     this.state = {
       places: []
     }

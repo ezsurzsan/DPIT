@@ -5,45 +5,34 @@ class InfoWindowMap extends Component {
 
 	constructor(props) {
 		super(props);
-
 		this.state = {
 			isOpen: false
 		}
-
 	}
 
-	handleToggleOpen = () => {
-
+	handleToggle = (bool) => {
 		this.setState({
-			isOpen: true
+			isOpen: bool
 		});
 	}
-
-	handleToggleClose = () => {
-		this.setState({
-			isOpen: false
-		});
-	}
+	// document.getElementByClassName("info").addEventListener("click", this.handleToggle(false));
 	render() {
-
 		return (
-
 			<Marker
-				key={this.props.index}
+				key={this.props.id}
 				position={{ lat: this.props.lat, lng: this.props.lng }}
-				label={this.props.index.toString()}
-				onClick={() => this.handleToggleOpen()}
+				onClick={() => this.handleToggle(!this.state.isOpen)}
 				icon={this.props.icon}
 			>
-
 				{
 					this.state.isOpen &&
-					<InfoWindow onCloseClick={this.props.handleCloseCall}>
+					<InfoWindow
+						onCloseClick={this.props.handleCloseCall}
+
+					>
 						<h1>{this.props.name}</h1>
 					</InfoWindow>
 				}
-
-
 			</Marker>
 
 		)

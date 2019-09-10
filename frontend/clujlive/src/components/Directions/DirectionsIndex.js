@@ -3,11 +3,8 @@ import { compose, withProps } from "recompose";
 import DirectionRenderComponent from "./DirectionRenderComponent";
 import { G_API_URL } from "../../utility/constants";
 import mapStyles from "../../GoogleMapStyles.json"
-import { Marker } from "react-google-maps";
 import Axios from 'axios';
 import InfoWindowMap from "../InfoWindowMap";
-
-// import GetPlaceDetails from "../../actions/GetPlaceDetails";
 
 const { withScriptjs, withGoogleMap, GoogleMap } = require("react-google-maps");
 const MapMarker = require('../../GoogleMapMarker.svg')
@@ -22,68 +19,54 @@ class Directions extends Component {
         lat: 46.769,
         lng: 23.5964
       },
+      isMapClicked: false,
       rating: []
     }
-    // this.onClick = this.onClick.bind(this);
+  }
+
+  handleToggleMap = () => {
+    this.setState({
+      isMapClicked: !this.state.isMapClicked
+    });
   }
 
   render() {
-    const onClickAction = function () {
-      console.log("OnClick");
-      // const placeDetail=new Get.PlaceDetails('ChIJu-gzUZ0OSUcRBeJI7iWn1ws');
-      // placeDetail.getReordering();
-    };
+    // still not working
+    this.getRating=this.getRating.bind(this);
     return (
       <div>
         <GoogleMap
           defaultZoom={this.state.defaultZoom}
           center={this.state.center}
           options={{ styles: mapStyles }}
+          onClick={this.handleToggleMap}
         >
           {
             this.props.places.map(place => {
               return (
-                < InfoWindowMap
+                <InfoWindowMap
                   key={place.id}
                   lat={place.latitude}
                   lng={place.longitude}
                   index={place.id}
                   name={place.name}
                   icon={MapMarker}
+                  isMapClicked={this.state.isMapClicked}
                 />
               )
             })}
-          {/* <Marker
-             defaultIcon={{
-               url: MapMarker,
-               // look for size in documentation
-             }}
-             position={{
-               lat: this.props.places[0].latitude,
-               lng: this.props.places[0].longitude
-             }}
-           />
-           <Marker
-             defaultIcon={{
-               url: MapMarker,
-               // look for size in documentation
-             }}
-            position={{
-               lat: this.props.places[1].latitude,
-               lng: this.props.places[1].longitude
-             }}
-           onClick={this.getRating(this)}
-           /> */}
-          {/* <DirectionRenderComponent
-             key={this.props.places[0].id}
-             index={this.props.places[0].id}
-             from={{ fromTitle: this.props.places[0].name, lat: this.props.places[0].latitude, lng: this.props.places[0].longitude }}
-             to={{ toTitle: this.props.places[1].name, lat: this.props.places[1].latitude, lng: this.props.places[1].longitude }}
-           /> */}
+          <DirectionRenderComponent
+            key={this.props.places[0].id}
+            from={{ fromTitle: this.props.places[0].name, lat: this.props.places[0].latitude, lng: this.props.places[0].longitude }}
+            to={{ toTitle: this.props.places[1].name, lat: this.props.places[1].latitude, lng: this.props.places[1].longitude }}
+          />
         </GoogleMap>
-        {/* <button name={"button"} onClick={()=>this.getRating()} /> */}
+        <button name={"button"} onClick={this.getRating} />
       </div>
     );
+  }
+  test = function () {
+    console.log("test");
   }
   async getRating() {
     const response = await Axios.get("http://localhost:8080/rating").then(response => {
