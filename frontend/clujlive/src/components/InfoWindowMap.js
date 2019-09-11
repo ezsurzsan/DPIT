@@ -17,7 +17,7 @@ class InfoWindowMap extends Component {
 		});
 	}
 
-	handleClick = function(key) {
+	handleClick = function (key) {
 		console.log('1. Received click in Button', key);
 		this.props.handleInfoClick(key);
 	}
@@ -35,9 +35,29 @@ class InfoWindowMap extends Component {
 				{
 					this.props.opened &&
 					<InfoWindow
-						// onCloseClick={this.props.handleCloseCall}
+					// onCloseClick={this.props.handleCloseCall}
 					>
-						<h1>{this.props.name}</h1>
+						<div>
+							{/* <style>
+								a:link, a:visited {
+								font-family: Baskerville Old Face;
+								color: white;
+								background-color: red;
+								padding: 15px 25px;
+								text-align: center;
+								text-decoration: none;
+								display: inline-block;
+						 	 	}
+								a:hover, a:active {
+									background - color: black;
+						  		}
+						  	</style> */}
+							<p style={{ color: 'green' }}>Deschis</p>
+							<h1 style={{ fontFamily: 'Baskerville Old Face', textAlign: 'center' }}>{this.props.name}</h1>
+							<p style={{ textAlign: 'left' }}> <a herf={this.props.menu_link} target="_blank">Meniu</a> </p>
+							<p style={{ textAlign: 'center' }}> <a herf={this.props.website} target="_blank">Website</a> </p>
+							<p style={{ textAlign: 'right' }}> <a herf={this.props.reservation_link} target="_blank">Rezervari</a> </p>
+						</div>
 					</InfoWindow>
 				}
 			</Marker>
