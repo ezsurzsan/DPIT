@@ -25,7 +25,11 @@ class App extends Component {
     }).then(responseData => {
       return responseData
     })
-    this.setState({ places: places })
+    var newPlaces=[];
+    for (var place of places) {
+      newPlaces.push({...place, opened: false});
+    }
+    this.setState({ places: newPlaces })
   }
 }
 

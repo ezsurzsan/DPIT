@@ -6,7 +6,8 @@ class InfoWindowMap extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			isOpen: false
+			isOpen: false,
+			key: this.props.id
 		}
 	}
 
@@ -15,20 +16,26 @@ class InfoWindowMap extends Component {
 			isOpen: bool
 		});
 	}
-	// document.getElementByClassName("info").addEventListener("click", this.handleToggle(false));
+
+	handleClick = function(key) {
+		console.log('1. Received click in Button', key);
+		this.props.handleInfoClick(key);
+	}
 	render() {
+		console.log("rendered, key:", this.state.key);
 		return (
 			<Marker
-				key={this.props.id}
+				key={this.props.key}
 				position={{ lat: this.props.lat, lng: this.props.lng }}
-				onClick={() => this.handleToggle(!this.state.isOpen)}
+				//onClick={() => this.handleToggle(!this.state.isOpen)}
 				icon={this.props.icon}
+				opened={this.props.opened}
+				onClick={() => this.handleClick(this.state.key)}
 			>
 				{
-					this.state.isOpen &&
+					this.props.opened &&
 					<InfoWindow
-						onCloseClick={this.props.handleCloseCall}
-
+						// onCloseClick={this.props.handleCloseCall}
 					>
 						<h1>{this.props.name}</h1>
 					</InfoWindow>
