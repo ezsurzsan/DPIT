@@ -30,7 +30,7 @@ class Directions extends Component {
     for (var place of newPlaces) {
       place.opened = false;
     }
-    this.setState({places: newPlaces});
+    this.setState({ places: newPlaces });
   }
 
   handleInfoClick = (key) => {
@@ -38,7 +38,7 @@ class Directions extends Component {
     for (var place of newPlaces) {
       place.opened = place.id !== key ? false : true;
     }
-    this.setState({places: newPlaces});
+    this.setState({ places: newPlaces });
   }
 
   render() {
@@ -57,12 +57,8 @@ class Directions extends Component {
             this.state.places.map(place => {
               return (
                 <InfoWindowMap
-                  id={place.id}
-                  lat={place.latitude}
-                  lng={place.longitude}
-                  name={place.name}
+                  place={place}
                   icon={MapMarker}
-                  opened={place.opened}
                   handleInfoClick={this.handleInfoClick}
                 />
               )
@@ -77,13 +73,13 @@ class Directions extends Component {
       </div>
     );
   }
-  async getRating() {
+  getRating() {
     console.log("button pressed");
-    const response = await Axios.get("http://localhost:8080/rating").then(response => {
+    const response = Axios.get("http://localhost:8080/rating").then(response => {
       return Promise.resolve(response.data);
     }).then(responseData => {
       console.log(responseData);
-      return responseData
+      // return responseData
     })
     console.log("rating: " + parseFloat(response))
     this.setState({ rating: parseFloat(response) })
