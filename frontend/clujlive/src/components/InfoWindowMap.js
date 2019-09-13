@@ -25,6 +25,7 @@ class InfoWindowMap extends Component {
 				icon={this.props.icon}
 				opened={this.props.place.opened}
 				onClick={() => this.handleClick(this.state.key)}
+				label={this.props.place.name}
 			>
 				{
 					this.props.place.opened &&
