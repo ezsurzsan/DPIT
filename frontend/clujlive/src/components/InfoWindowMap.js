@@ -17,7 +17,6 @@ class InfoWindowMap extends Component {
 	}
 
 	render() {
-		console.log("rendered, key:", this.state.key);
 		return (
 			<Marker
 				key={this.props.place.id}
@@ -25,6 +24,7 @@ class InfoWindowMap extends Component {
 				icon={this.props.icon}
 				opened={this.props.place.opened}
 				onClick={() => this.handleClick(this.state.key)}
+				label={this.props.place.name}
 			>
 				{
 					this.props.place.opened &&
