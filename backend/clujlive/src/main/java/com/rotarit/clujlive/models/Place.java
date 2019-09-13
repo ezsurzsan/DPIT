@@ -1,18 +1,66 @@
 package com.rotarit.clujlive.models;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Place {
     @Id
+    @GeneratedValue
     private Integer id;
     private String name;
     private float latitude;
     private float longitude;
+    private String googleID;
+    private String type;
+    private String website;
+    private String reservationLink;
+    private String menuLink;
+    private float popularity; // placeholder data
 
     public Place() {
 
+    }
+
+    public float getPopularity() {
+        return popularity;
+    }
+
+    public void setPopularity(float popularity) {
+        this.popularity = popularity;
+    }
+
+    public String getMenuLink() {
+        return menuLink;
+    }
+
+    public void setMenuLink(String menuLink) {
+        this.menuLink = menuLink;
+    }
+
+    public String getReservationLink() {
+        return reservationLink;
+    }
+
+    public void setReservationLink(String reservationLink) {
+        this.reservationLink = reservationLink;
+    }
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Place(String name, float latitude, float longitude) {
@@ -20,6 +68,8 @@ public class Place {
         this.latitude = latitude;
         this.longitude = longitude;
     }
+    
+    
 
     public Integer getId() {
 		return id;
@@ -52,5 +102,13 @@ public class Place {
 
     public void setLongitude(float longitude) {
         this.longitude = longitude;
+    }
+
+    public String getGoogleID() {
+        return googleID;
+    }
+
+    public void setGoogleID(String googleID) {
+        this.googleID = googleID;
     }
 }
