@@ -36,7 +36,6 @@ class InfoWindowMap extends Component {
 					</InfoWindow>
 				}
 			</Marker>
-
 		)
 	}
 }

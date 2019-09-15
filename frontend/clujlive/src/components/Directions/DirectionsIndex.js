@@ -5,23 +5,27 @@ import { G_API_URL } from "../../utility/constants";
 import mapStyles from "../../GoogleMapStyles.json"
 import Axios from 'axios';
 import InfoWindowMap from "../InfoWindowMap";
+// import HeatmapLayer from "react-google-maps/lib/components/visualization/HeatmapLayer";
+import { createLatLngObject, convertLatLngToObj } from "../../utility/helper";
+import HeatmapLayer from "react-google-maps/lib/components/visualization/HeatmapLayer";
 
 const { withScriptjs, withGoogleMap, GoogleMap } = require("react-google-maps");
 const MapMarker = require('../../GoogleMapMarker.svg')
+const google = window.google = window.google ? window.google : {}
 
 class Directions extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      defaultZoom: 14,
+      defaultZoom: 16,
       map: null,
       center: {
         lat: 46.769,
-        lng: 23.5964
+        lng: 23.592
       },
       isMapClicked: false,
-      rating: [],
-      places: this.props.places
+      places: this.props.places,
+      rating: []
     }
   }
 
@@ -68,11 +72,19 @@ class Directions extends Component {
             from={{ fromTitle: this.props.places[0].name, lat: this.props.places[0].latitude, lng: this.props.places[0].longitude }}
             to={{ toTitle: this.props.places[1].name, lat: this.props.places[1].latitude, lng: this.props.places[1].longitude }}
           />
+          <HeatmapLayer
+            data={[new google.maps.LatLng(this.props.places[0].latitude, this.props.places[0].longitude)]}
+            options={{
+              radius: 35,
+              opacity: 0.6
+            }}
+          />
         </GoogleMap>
         <button name={"button"} onClick={() => this.getRating()} />
       </div>
     );
   }
+
   getRating() {
     console.log("button pressed");
     const response = Axios.get("http://localhost:8080/rating").then(response => {
