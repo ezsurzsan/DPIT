@@ -1,3 +1,10 @@
+const convertLatLngToObj = (lat, lng) => {
+  return {
+    lat,
+    lng
+  };
+};
+
 const createLatLngObject = latLng => {
   const latLngArray = latLng.split(",");
   return {
