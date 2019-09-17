@@ -30,28 +30,26 @@ public class ClujliveController {
     @RequestMapping("/place")
     @GetMapping
     public String placeInfo() {
-        try {   
+        try {
             JSONObject temp = google.makeRequest("ChIJu-gzUZ0OSUcRBeJI7iWn1ws");
             System.out.println(temp);
             return temp.toString(); // this response is a valid JSON
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-             e.printStackTrace();
-             return e.getMessage();
+            e.printStackTrace();
+            return e.getMessage();
         }
     }
 
     @RequestMapping("/rating")
     @GetMapping
     public float placeRating(String placeID) {
-        try {   
-            float temp = google.makeRatingRequest("ChIJu-gzUZ0OSUcRBeJI7iWn1ws");
+        try {
+            float temp = google.makeRatingRequest(placeID);
             System.out.println(temp);
             return temp;
         } catch (Exception e) {
-            // TODO Auto-generated catch block
-             e.printStackTrace();
-             return -1;
+            e.printStackTrace();
+            return -1;
         }
     }
 }

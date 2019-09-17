@@ -3,10 +3,7 @@ import { compose, withProps } from "recompose";
 import DirectionRenderComponent from "./DirectionRenderComponent";
 import { G_API_URL } from "../../utility/constants";
 import mapStyles from "../../GoogleMapStyles.json"
-import Axios from 'axios';
 import InfoWindowMap from "../InfoWindowMap";
-// import HeatmapLayer from "react-google-maps/lib/components/visualization/HeatmapLayer";
-import { createLatLngObject, convertLatLngToObj } from "../../utility/helper";
 import HeatmapLayer from "react-google-maps/lib/components/visualization/HeatmapLayer";
 
 const { withScriptjs, withGoogleMap, GoogleMap } = require("react-google-maps");
@@ -25,7 +22,8 @@ class Directions extends Component {
       },
       isMapClicked: false,
       places: this.props.places,
-      rating: []
+      rating: [],
+      opacity: 1
     }
   }
 
@@ -46,55 +44,56 @@ class Directions extends Component {
   }
 
   render() {
-    // still not working
-    this.getRating = this.getRating.bind(this);
-    console.log(this.state.places);
+    if (this.props.places.length > 0) {
+      return (
+        <div>
+          <GoogleMap
+            defaultZoom={this.state.defaultZoom}
+            center={this.state.center}
+            options={{ styles: mapStyles }}
+            onClick={this.handleToggleMap}
+          >
+            {
+              this.state.places.map(place => {
+                return (
+                  <InfoWindowMap
+                    place={place}
+                    icon={MapMarker}
+                    handleInfoClick={this.handleInfoClick}
+                  />
+                )
+              })}
+            <DirectionRenderComponent
+              key={this.props.places[0] ? this.props.places[0].id : null}
+              from={{ fromTitle: this.props.places[0].name, lat: this.props.places[0].latitude, lng: this.props.places[0].longitude }}
+              to={{ toTitle: this.props.places[1].name, lat: this.props.places[1].latitude, lng: this.props.places[1].longitude }}
+            />
+            <HeatmapLayer
+              data={[new google.maps.LatLng(this.props.places[0].latitude, this.props.places[0].longitude)]}
+              options={{
+                radius: 35,
+                opacity: this.state.opacity
+              }}
+            />
+          </GoogleMap>
+          <button name={"button"} onClick={() => this.setState({ opacity: 0 })} />
+        </div>
+      );
+    }
+    else
     return (
       <div>
-        <GoogleMap
-          defaultZoom={this.state.defaultZoom}
-          center={this.state.center}
-          options={{ styles: mapStyles }}
-          onClick={this.handleToggleMap}
-        >
-          {
-            this.state.places.map(place => {
-              return (
-                <InfoWindowMap
-                  place={place}
-                  icon={MapMarker}
-                  handleInfoClick={this.handleInfoClick}
-                />
-              )
-            })}
-          <DirectionRenderComponent
-            key={this.props.places[0].id}
-            from={{ fromTitle: this.props.places[0].name, lat: this.props.places[0].latitude, lng: this.props.places[0].longitude }}
-            to={{ toTitle: this.props.places[1].name, lat: this.props.places[1].latitude, lng: this.props.places[1].longitude }}
-          />
-          <HeatmapLayer
-            data={[new google.maps.LatLng(this.props.places[0].latitude, this.props.places[0].longitude)]}
-            options={{
-              radius: 35,
-              opacity: 0.6
-            }}
-          />
-        </GoogleMap>
-        <button name={"button"} onClick={() => this.getRating()} />
+        <h1>Something went wrong..</h1>
       </div>
-    );
+    )
   }
 
-  getRating() {
-    console.log("button pressed");
-    const response = Axios.get("http://localhost:8080/rating").then(response => {
-      return Promise.resolve(response.data);
-    }).then(responseData => {
-      console.log(responseData);
-      // return responseData
-    })
-    console.log("rating: " + parseFloat(response))
-    this.setState({ rating: parseFloat(response) })
+  getHeatmapPoints() {
+    var heatmapPoints;
+    for (var place in this.state.places) {
+      heatmapPoints.push(google.maps.LatLng(place.latitude, place.longitude));
+    }
+    return heatmapPoints;
   }
 }
 

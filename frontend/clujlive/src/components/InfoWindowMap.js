@@ -12,12 +12,10 @@ class InfoWindowMap extends Component {
 	}
 
 	handleClick = function (key) {
-		console.log('1. Received click in Button', key);
 		this.props.handleInfoClick(key);
 	}
 
 	render() {
-		console.log("rendered, key:", this.state.key);
 		return (
 			<Marker
 				key={this.props.place.id}

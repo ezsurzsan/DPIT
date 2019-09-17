@@ -6,7 +6,6 @@ import java.net.URL;
 
 import javax.net.ssl.HttpsURLConnection;
 
-import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.stereotype.Service;
 
@@ -16,7 +15,7 @@ public class GooglePlacesClient {
     // "AIzaSyDve3P1vFG6yiaSqlIyGC_Zr1wIeRov56Q";
 
     public JSONObject makeRequest(String placeID) throws Exception {
-        String key = "AIzaSyDve3P1vFG6yiaSqlIyGC_Zr1wIeRov56Q";
+        String key = "AIzaSyAh8QaruNiELa5XJDUjNchIz1tdZrYOD0A";
         URL url = new URL("https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID + "&key=" + key);
         HttpsURLConnection con = (HttpsURLConnection) url.openConnection();
         con.setRequestMethod("GET");

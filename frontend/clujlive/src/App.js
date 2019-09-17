@@ -12,11 +12,21 @@ class App extends Component {
   }
 
   render() {
-    return <Directions places={this.state.places} />;
+    if (this.state.places.length > 0) {
+      return <Directions places={this.state.places} />;
+    }
+    else {
+      return (
+        <div>
+          <h2>loading...</h2>
+        </div>
+      )
+    }
   }
 
-  componentDidMount() {
-    this.getPlaces();
+  async componentDidMount() {
+    await this.getPlaces();
+    console.log("get");
   }
 
   async getPlaces() {
@@ -25,10 +35,14 @@ class App extends Component {
     }).then(responseData => {
       return responseData
     })
-    var newPlaces=[];
+    var newPlaces = [];
     for (var place of places) {
-      newPlaces.push({...place, opened: false});
+      const response = await Axios.get("http://localhost:8080/rating", { params: { placeID: place.googleID } }).then(response => {
+        return Promise.resolve(response.data);
+      })
+      newPlaces.push({ ...place, opened: false, rating: response });
     }
+    console.log("state");
     this.setState({ places: newPlaces })
   }
 }
