@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { convertLatLngToObj } from "../../utility/helper";
+
 const { DirectionsRenderer } = require("react-google-maps");
 
 class DirectionRenderComponent extends Component {

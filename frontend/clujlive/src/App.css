@@ -1,0 +1,19 @@
+#loading {
+  color:lightgray;
+  text-align: center;
+}
+
+#container {
+  position: absolute;
+  top: 50%;
+  margin-top: -200px;
+  left: 0;
+  width: 100%;
+}
+
+#content {
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  height: 50px;
+}

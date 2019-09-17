@@ -17,8 +17,10 @@ class App extends Component {
     }
     else {
       return (
-        <div>
-          <h2>loading...</h2>
+        <div id="container">
+          <div id="content">
+            <h1 id="loading">loading...</h1>
+          </div>
         </div>
       )
     }

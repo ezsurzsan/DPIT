@@ -19,7 +19,7 @@ class InfoWindowMap extends Component {
 		return (
 			<Marker
 				key={this.props.place.id}
-				position={{ lat: this.props.place.latitude, lng: this.props.place.longitude	 }}
+				position={{ lat: this.props.place.latitude, lng: this.props.place.longitude }}
 				icon={this.props.icon}
 				opened={this.props.place.opened}
 				onClick={() => this.handleClick(this.state.key)}
