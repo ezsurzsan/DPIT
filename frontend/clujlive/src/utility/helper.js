@@ -1,3 +1,5 @@
+const google = window.google = window.google ? window.google : {}
+
 const convertLatLngToObj = (lat, lng) => {
   return {
     lat,
@@ -27,4 +29,16 @@ const createLocationObject = (
   };
 };
 
-export { convertLatLngToObj, createLocationObject, createLatLngObject };
+const getHeatmapPoints = (places) => {
+  var heatmapPoints = [];
+  for (var place of places) {
+    heatmapPoints[heatmapPoints.length] = {
+      location: new google.maps.LatLng(place.latitude, place.longitude),
+      // random formula to get visually pleasing data
+      weight: (place.popularity - 4) / 4 - 0.13
+    };
+  }
+  return heatmapPoints;
+}
+
+export { convertLatLngToObj, createLocationObject, createLatLngObject, getHeatmapPoints };

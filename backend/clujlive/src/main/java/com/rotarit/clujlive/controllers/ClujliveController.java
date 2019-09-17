@@ -31,8 +31,8 @@ public class ClujliveController {
     @GetMapping
     public float placeRating(String placeID) {
         try {
-            float temp = google.makeRatingRequest(placeID);
-            System.out.println(temp);
+            // float temp = google.makeRatingRequest(placeID);
+            // System.out.println(temp);
             return 0;
         } catch (Exception e) {
             e.printStackTrace();
