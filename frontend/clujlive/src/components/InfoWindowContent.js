@@ -7,9 +7,11 @@ class InfoWindowContent extends Component {
       <div>
         <h1 style={{ fontFamily: 'Roboto', textAlign: 'center' }}>{this.props.place.name}</h1>
         <p style={{ color: 'green', fontFamily: 'Roboto' }}>Deschis</p>
-        <p style={{ textAlign: 'left' }}> <a href={ this.props.place.menuLink } target={'_blank'}>Meniu</a> </p>
-        <p style={{ textAlign: 'center' }}> <a href={ this.props.place.website } target={'_blank'}>Website</a> </p>
-        <p style={{ textAlign: 'right' }}> <a href={ this.props.place.reservationLink } target="_blank">Rezervari</a> </p>
+        <p> 
+            <a  style={{ textAlign: 'center' }} href={ this.props.place.menuLink } target={'_blank'}>Meniu</a> 
+            <a style={{ textAlign: 'center' }} href={ this.props.place.website } target={'_blank'}>Website</a> 
+            <a style={{ textAlign: 'center' }} href={ this.props.place.reservationLink } target="_blank">Rezervari</a>
+        </p>
       </div>
     )
   }
