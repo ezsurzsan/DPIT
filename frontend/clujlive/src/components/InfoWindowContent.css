@@ -1,18 +1,18 @@
-a:link, a:visited{
-  font-family: Roboto;
+.btn-info{
+  background: #041863; 
   color: white;
-  background-color: #041863;
-  padding: 15px 25px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
+  border-radius: 7;
+  border-color: #041863;
 }
-
-a:hover, a:active {
-  background-color: #304a7d;
+.btn-info:hover {
+  background: #1e327c; 
+  color: white;
+  border-color: #1e327c;
 }
 
 .btn-primary {
   background: #304a7d;
   color: rgb(253, 253, 253);
+  border-color: #304a7d;
+  box-shadow: 1px 2px 5px #000000;
 }

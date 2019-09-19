@@ -98,10 +98,10 @@ class Directions extends Component {
             />
           </GoogleMap>
           <div class="container">
-            <button type="button" class="btn btn-primary" onClick={() => this.setState({ opacity: 0 })}>Button</button>
-            <button type="button" class="btn btn-primary">Button</button>
-            <button type="button" class="btn btn-primary">Button</button>
-            <button type="button" class="btn btn-primary">Button</button>
+            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ opacity: 0 })}>Button</button>
+            <button type="button" className="btn btn-primary btn-lg">Button</button>
+            <button type="button" className="btn btn-primary btn-lg">Button</button>
+            <button type="button" className="btn btn-primary btn-lg">Button</button>
           </div>
         </div>
       );
