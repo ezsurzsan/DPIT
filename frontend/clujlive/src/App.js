@@ -39,10 +39,10 @@ class App extends Component {
     })
     var newPlaces = [];
     for (var place of places) {
-      const response = await Axios.get("http://localhost:8080/rating", { params: { placeID: place.googleID } }).then(response => {
+      const response = await Axios.get("http://localhost:8080/details", { params: { placeID: place.googleID } }).then(response => {
         return Promise.resolve(response.data);
       })
-      newPlaces.push({ ...place, opened: false, rating: response });
+      newPlaces.push({ ...place, opened: false, details: response });
     }
     console.log("state");
     this.setState({ places: newPlaces })

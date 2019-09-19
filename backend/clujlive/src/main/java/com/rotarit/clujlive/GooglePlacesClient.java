@@ -33,10 +33,13 @@ public class GooglePlacesClient {
         return resultJSON;
     }
 
-    public float makeRatingRequest(String placeID) throws Exception {
+    public JSONObject makeDetailsRequest(String placeID) throws Exception {
+        JSONObject details = new JSONObject();
         JSONObject placeJSON = makeRequest(placeID);
         float rating = placeJSON.getFloat("rating");
-        return rating;
+        int priceLevel = placeJSON.getInt("price_level");
+        details.append("rating", rating);
+        details.append("price_level", priceLevel);
+        return details;
     }
-
 }

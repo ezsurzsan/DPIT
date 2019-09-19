@@ -29,16 +29,37 @@ const createLocationObject = (
   };
 };
 
-const getHeatmapPoints = (places) => {
+const getHeatmapPopularity = (places) => {
   var heatmapPoints = [];
   for (var place of places) {
     heatmapPoints[heatmapPoints.length] = {
       location: new google.maps.LatLng(place.latitude, place.longitude),
-      // random formula to get visually pleasing data
       weight: place.popularity
     };
   }
   return heatmapPoints;
 }
 
-export { convertLatLngToObj, createLocationObject, createLatLngObject, getHeatmapPoints };
+const getHeatmapRating = (places) => {
+  var heatmapPoints = [];
+  for (var place of places) {
+    heatmapPoints[heatmapPoints.length] = {
+      location: new google.maps.LatLng(place.latitude, place.longitude),
+      weight: (place.details.rating / 5)
+    };
+  }
+  return heatmapPoints;
+}
+
+const getHeatmapPriceLevel = (places) => {
+  var heatmapPoints = [];
+  for (var place of places) {
+    heatmapPoints[heatmapPoints.length] = {
+      location: new google.maps.LatLng(place.latitude, place.longitude),
+      weight: (place.details.rating / 5)
+    };
+  }
+  return heatmapPoints;
+}
+
+export { convertLatLngToObj, createLocationObject, createLatLngObject, getHeatmapPopularity as getHeatmapPoints };

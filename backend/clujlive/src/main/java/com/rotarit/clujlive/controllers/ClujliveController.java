@@ -6,8 +6,11 @@ import com.rotarit.clujlive.GooglePlacesClient;
 import com.rotarit.clujlive.PlaceRepository;
 import com.rotarit.clujlive.models.Place;
 
+import org.json.JSONObject;
 // import org.json.JSONObjects
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,16 +30,16 @@ public class ClujliveController {
         return placeRepository.findAll();
     }
 
-    @RequestMapping("/rating")
+    @RequestMapping("/details")
     @GetMapping
-    public float placeRating(String placeID) {
+    public ResponseEntity<?> placeRating(String placeID) {
         try {
-            // float temp = google.makeRatingRequest(placeID);
-            // System.out.println(temp);
-            return 0;
+            JSONObject temp = google.makeDetailsRequest(placeID);
+            System.out.println(temp);
+            return new ResponseEntity<>(temp.toString(), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
-            return -1;
+            return null;
         }
     }
 }
