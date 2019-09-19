@@ -1,4 +1,4 @@
-a:link {
+a:link, a:visited{
   font-family: Roboto;
   color: white;
   background-color: #041863;
@@ -10,4 +10,9 @@ a:link {
 
 a:hover, a:active {
   background-color: #304a7d;
+}
+
+.btn-primary {
+  background: #304a7d;
+  color: rgb(253, 253, 253);
 }
