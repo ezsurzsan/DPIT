@@ -5,11 +5,10 @@ import { G_API_URL } from "../../utility/constants";
 import mapStyles from "../../GoogleMapStyles.json"
 import InfoWindowMap from "../InfoWindowMap";
 import HeatmapLayer from "react-google-maps/lib/components/visualization/HeatmapLayer";
-import { getHeatmapPoints } from "../../utility/helper";
+import { getHeatmapPopularity, getHeatmapPriceLevel, getHeatmapRating } from "../../utility/helper";
 
 const { withScriptjs, withGoogleMap, GoogleMap } = require("react-google-maps");
 const MapMarker = require('../../GoogleMapMarker.svg')
-// const google = window.google = window.google ? window.google : {}
 
 class Directions extends Component {
   constructor(props) {
@@ -23,7 +22,7 @@ class Directions extends Component {
       },
       isMapClicked: false,
       places: this.props.places,
-      rating: [],
+      heatmapData: getHeatmapPopularity(this.props.places),
       opacity: 0.9
     }
   }
@@ -45,7 +44,6 @@ class Directions extends Component {
   }
 
   render() {
-
     if (this.props.places.length > 0) {
       return (
         <div>
@@ -71,7 +69,7 @@ class Directions extends Component {
               to={{ toTitle: this.props.places[1].name, lat: this.props.places[1].latitude, lng: this.props.places[1].longitude }}
             />
             <HeatmapLayer
-              data={getHeatmapPoints(this.state.places)}
+              data={this.state.heatmapData}
               options={{
                 dissipating: false,
                 radius: 0.001,
@@ -79,40 +77,27 @@ class Directions extends Component {
                 gradient: [
                   'rgba(0, 255, 255, 0)',
                   'rgba(0, 255, 255, 0.2)',
-                  // 'rgba(0, 255, 255, 0.2)',
-                  // 'rgba(0, 190, 255, 0.4)',
-                  // 'rgba(5, 120, 255, 0.4)',
-                  // 'rgba(10, 60, 255, 0.5)',
-                  // 'rgba(20, 10, 255, 0.5)',
-                  // 'rgba(30, 5, 223, 0.6)',
-                  // 'rgba(70, 10, 191, 0.6)',
-                  // 'rgba(70, 30, 159, 0.5)',
-                  // 'rgba(70, 40, 127, 0.6)',
-                  // 'rgba(180, 40, 91, 0.8)',
-                  // 'rgba(200, 20, 63, 0.8)',
-                  // 'rgba(255, 10, 31, 1)',
-                  //'rgba(0, 0, 250, 0.7)',
                   'rgba(0, 0, 25, 1)'
                 ]
               }}
             />
           </GoogleMap>
           <div class="container">
-            <button type="button" class="btn btn-primary" onClick={() => this.setState({ opacity: 0 })}>Button</button>
-            <button type="button" class="btn btn-primary">Button</button>
-            <button type="button" class="btn btn-primary">Button</button>
-            <button type="button" class="btn btn-primary">Button</button>
+            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: []})}>Button</button>
+            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapPopularity(this.state.places) })}>Button</button>
+            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapPriceLevel(this.state.places) })}>Button</button>
+            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapRating(this.state.places) })}>Button</button>
           </div>
-        </div>
+        </div >
       );
-
     }
-    else
+    else {
       return (
         <div>
           <h1>Something went wrong.</h1>
         </div>
       )
+    }
   }
 }
 

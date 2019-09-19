@@ -7,7 +7,6 @@ import com.rotarit.clujlive.PlaceRepository;
 import com.rotarit.clujlive.models.Place;
 
 import org.json.JSONObject;
-// import org.json.JSONObjects
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

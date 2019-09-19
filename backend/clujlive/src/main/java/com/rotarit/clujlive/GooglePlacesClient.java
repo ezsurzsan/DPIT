@@ -11,9 +11,6 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class GooglePlacesClient {
-    // private static final String GOOGLE_API_KEY =
-    // "AIzaSyDve3P1vFG6yiaSqlIyGC_Zr1wIeRov56Q";
-
     public JSONObject makeRequest(String placeID) throws Exception {
         String key = "AIzaSyAh8QaruNiELa5XJDUjNchIz1tdZrYOD0A";
         URL url = new URL("https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeID + "&key=" + key);
@@ -27,7 +24,7 @@ public class GooglePlacesClient {
         }
         JSONObject rawJSON = new JSONObject(stringBuilder.toString());
         JSONObject resultJSON = rawJSON.getJSONObject("result");
-        // System.out.println(resultJSON);
+        System.out.println(resultJSON);
         in.close();
         con.disconnect();
         return resultJSON;
@@ -36,8 +33,8 @@ public class GooglePlacesClient {
     public JSONObject makeDetailsRequest(String placeID) throws Exception {
         JSONObject details = new JSONObject();
         JSONObject placeJSON = makeRequest(placeID);
-        float rating = placeJSON.getFloat("rating");
         int priceLevel = placeJSON.getInt("price_level");
+        float rating = placeJSON.getFloat("rating");
         details.append("rating", rating);
         details.append("price_level", priceLevel);
         return details;
