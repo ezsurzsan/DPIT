@@ -28,6 +28,7 @@ class InfoWindowMap extends Component {
 				{
 					this.props.place.opened &&
 					<InfoWindow>
+						
 						<InfoWindowContent
 							place={this.props.place}
 						/>
