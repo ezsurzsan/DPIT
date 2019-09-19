@@ -9,7 +9,7 @@ import { getHeatmapPoints } from "../../utility/helper";
 
 const { withScriptjs, withGoogleMap, GoogleMap } = require("react-google-maps");
 const MapMarker = require('../../GoogleMapMarker.svg')
-const google = window.google = window.google ? window.google : {}
+// const google = window.google = window.google ? window.google : {}
 
 class Directions extends Component {
   constructor(props) {
@@ -24,7 +24,7 @@ class Directions extends Component {
       isMapClicked: false,
       places: this.props.places,
       rating: [],
-      opacity: 0.85
+      opacity: 0.9
     }
   }
 
@@ -79,18 +79,20 @@ class Directions extends Component {
                 gradient: [
                   'rgba(0, 255, 255, 0)',
                   'rgba(0, 255, 255, 0.2)',
-                  'rgba(0, 190, 255, 0.4)',
-                  'rgba(5, 120, 255, 0.4)',
-                  'rgba(10, 60, 255, 0.5)',
-                  'rgba(20, 10, 255, 0.5)',
-                  'rgba(30, 5, 223, 0.6)',
-                  'rgba(70, 10, 191, 0.6)',
-                  'rgba(70, 30, 159, 0.5)',
-                  'rgba(70, 40, 127, 0.6)',
-                  'rgba(70, 40, 91, 0.8)',
-                  'rgba(150, 0, 63, 0.8)',
-                  'rgba(220, 0, 31, 1)',
-                  'rgba(255, 0, 0, 1)'
+                  // 'rgba(0, 255, 255, 0.2)',
+                  // 'rgba(0, 190, 255, 0.4)',
+                  // 'rgba(5, 120, 255, 0.4)',
+                  // 'rgba(10, 60, 255, 0.5)',
+                  // 'rgba(20, 10, 255, 0.5)',
+                  // 'rgba(30, 5, 223, 0.6)',
+                  // 'rgba(70, 10, 191, 0.6)',
+                  // 'rgba(70, 30, 159, 0.5)',
+                  // 'rgba(70, 40, 127, 0.6)',
+                  // 'rgba(180, 40, 91, 0.8)',
+                  // 'rgba(200, 20, 63, 0.8)',
+                  // 'rgba(255, 10, 31, 1)',
+                  //'rgba(0, 0, 250, 0.7)',
+                  'rgba(0, 0, 25, 1)'
                 ]
               }}
             />

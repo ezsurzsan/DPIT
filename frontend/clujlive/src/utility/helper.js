@@ -35,7 +35,7 @@ const getHeatmapPoints = (places) => {
     heatmapPoints[heatmapPoints.length] = {
       location: new google.maps.LatLng(place.latitude, place.longitude),
       // random formula to get visually pleasing data
-      weight: (place.popularity - 4) / 4 - 0.13
+      weight: place.popularity
     };
   }
   return heatmapPoints;
