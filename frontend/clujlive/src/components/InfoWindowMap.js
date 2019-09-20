@@ -25,7 +25,7 @@ class InfoWindowMap extends Component {
 				position={{ lat: this.props.place.latitude, lng: this.props.place.longitude }}
 				icon={{
 					url: this.props.icon,
-					labelOrigin: new google.maps.Point(26, 70)
+					labelOrigin: new google.maps.Point(30, 70)
 				}}
 				opened={this.props.place.opened}
 				onClick={() => this.handleClick(this.state.key)}
@@ -36,12 +36,10 @@ class InfoWindowMap extends Component {
 					fontSize: "17px",
 					color: "#fdeff9"
 				}}
-				// labelAnchor={new google.maps.Point(20, 20)}
 			>
 				{
 					this.props.place.opened &&
 					<InfoWindow>
-
 						<InfoWindowContent
 							place={this.props.place}
 						/>

@@ -33,10 +33,9 @@ public class ClujliveController {
     @GetMapping
     public ResponseEntity<?> placeRating(String placeID) {
         try {
-            // JSONObject temp = google.makeDetailsRequest(placeID);
-            // System.out.println(temp);
-            // return new ResponseEntity<>(temp.toString(), HttpStatus.OK);
-            return null;
+            JSONObject temp = google.makeDetailsRequest(placeID);
+            System.out.println(temp);
+            return new ResponseEntity<>(temp.toString(), HttpStatus.OK);
         } catch (Exception e) {
             e.printStackTrace();
             return null;

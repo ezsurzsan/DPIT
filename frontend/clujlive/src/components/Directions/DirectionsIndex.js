@@ -43,6 +43,11 @@ class Directions extends Component {
     this.setState({ places: newPlaces });
   }
 
+  onZoomChanged = () => {
+    const zoom = this.map.current.getZoom();
+    console.log(zoom);
+  }
+
   render() {
     if (this.props.places.length > 0) {
       return (
@@ -52,6 +57,7 @@ class Directions extends Component {
             center={this.state.center}
             options={{ styles: mapStyles }}
             onClick={this.handleToggleMap}
+            onZoomChanged={() => this.onZoomChanged()}
           >
             {
               this.state.places.map(place => {

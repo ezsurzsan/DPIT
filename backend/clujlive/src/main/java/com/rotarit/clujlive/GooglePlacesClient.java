@@ -32,10 +32,13 @@ public class GooglePlacesClient {
     public JSONObject makeDetailsRequest(String placeID) throws Exception {
         JSONObject details = new JSONObject();
         JSONObject placeJSON = makeRequest(placeID);
+        JSONObject openingHours = placeJSON.getJSONObject("opening_hours");
         int priceLevel = placeJSON.getInt("price_level");
         float rating = placeJSON.getFloat("rating");
+        boolean openNow = openingHours.getBoolean("open_now");
         details.append("rating", rating);
         details.append("price_level", priceLevel);
+        details.append("open_now", openNow);
         return details;
     }
 }
