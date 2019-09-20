@@ -24,7 +24,6 @@ public class GooglePlacesClient {
         }
         JSONObject rawJSON = new JSONObject(stringBuilder.toString());
         JSONObject resultJSON = rawJSON.getJSONObject("result");
-        System.out.println(resultJSON);
         in.close();
         con.disconnect();
         return resultJSON;

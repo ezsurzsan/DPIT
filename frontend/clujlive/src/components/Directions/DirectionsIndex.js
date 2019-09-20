@@ -23,7 +23,7 @@ class Directions extends Component {
       isMapClicked: false,
       places: this.props.places,
       heatmapData: getHeatmapPopularity(this.props.places),
-      opacity: 0.9
+      opacity: 0.95
     }
   }
 
@@ -72,21 +72,23 @@ class Directions extends Component {
               data={this.state.heatmapData}
               options={{
                 dissipating: false,
-                radius: 0.001,
+                radius: 0.0013,
                 opacity: this.state.opacity,
                 gradient: [
-                  'rgba(0, 255, 255, 0)',
-                  'rgba(0, 255, 255, 0.2)',
-                  'rgba(0, 0, 25, 1)'
+                  'rgba(3, 0, 30, 0)',
+                  'rgba(3, 0, 30, 0.2)',
+                  'rgba(115, 3, 192, 0.6)',
+                  'rgba(236, 56, 188, 0.9)',
+                  'rgba(253, 239, 249, 1)'
                 ]
               }}
             />
           </GoogleMap>
-          <div class="container">
-            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: []})}>Button</button>
-            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapPopularity(this.state.places) })}>Button</button>
-            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapPriceLevel(this.state.places) })}>Button</button>
-            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapRating(this.state.places) })}>Button</button>
+          <div className="container">
+            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: []})}>Clear Visualizer</button>
+            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapPopularity(this.state.places) })}>Popularity</button>
+            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapPriceLevel(this.state.places) })}>Price Level</button>
+            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapRating(this.state.places) })}>Rating</button>
           </div>
         </div >
       );
