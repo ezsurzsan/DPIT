@@ -9,6 +9,11 @@
   color: white;
   border-color: #1e327c;
 }
+.btn-info:visited{
+  background: #041863; 
+  color: white;
+  border-color: #041863;
+}
 
 .btn-primary {
   background: #304a7d;

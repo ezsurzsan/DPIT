@@ -90,7 +90,7 @@ class Directions extends Component {
               }}
             />
           </GoogleMap>
-          <div className="container">
+          <div className="btn-toolbar">
             <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: []})}>Clear Visualizer</button>
             <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapPopularity(this.state.places) })}>Popularity</button>
             <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapPriceLevel(this.state.places) })}>Price Level</button>
