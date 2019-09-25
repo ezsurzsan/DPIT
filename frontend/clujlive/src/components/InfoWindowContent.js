@@ -18,15 +18,21 @@ class InfoWindowContent extends Component {
     }
   }
 
+  handleClick = function(place) {
+    this.props.handleDirectionsClick(place);
+    console.log("salut");
+  }
+
   render() {
     return (
       <div style={{ width: '310px', overflow: 'hidden' }}>
         <h2 style={{ fontFamily: 'Roboto', textAlign: 'center' }}>{this.props.place.name}</h2>
-        <div style={{ width: '85%', margin: '0 auto', backgroundColor: '#00FF00'}}>
+        <div style={{ width: '85%', margin: '0 auto' }}>
           <p style={{ float: 'left', textAlign: 'center', fontSize: '120%', color: this.openColor(this.props.place.details.open_now[0]), fontFamily: 'Roboto' }}><b>{this.openText(this.props.place.details.open_now[0])}</b></p>
           <p style={{ float: 'right', textAlign: 'center', fontSize: '120%', color: '#ffdf00', fontFamily: 'Roboto', fontWeight: '900' }}>
             Rating: {this.props.place.details.rating}
           </p>
+          <button onClick={() => this.handleClick(this.props.place)}></button>
         </div>
         <p>
           <div class="btn-group btn-group-justified">

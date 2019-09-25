@@ -42,6 +42,7 @@ class InfoWindowMap extends Component {
 					<InfoWindow>
 						<InfoWindowContent
 							place={this.props.place}
+							handleDirectionsClick={this.props.handleDirectionsClick}
 						/>
 					</InfoWindow>
 				}

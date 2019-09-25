@@ -24,8 +24,7 @@ class Directions extends Component {
       places: this.props.places,
       heatmapData: getHeatmapPopularity(this.props.places),
       opacity: 0.95,
-      selectedLat: this.props.places[1].latitude, 
-      selectedLng: this.props.places[1].longitude,
+      selectedPlace: this.props.places[0],
       fromLat: 46.751339,
       fromLng: 23.573630
     }
@@ -47,6 +46,13 @@ class Directions extends Component {
     this.setState({ places: newPlaces });
   }
 
+  handleDirectionsClick = (place) => {
+    this.setState({
+      selectedPlace: place
+    })
+    console.log("sunt eu");
+  }
+
   onZoomChanged = () => {
     const zoom = this.map.current.getZoom();
     console.log(zoom);
@@ -59,7 +65,10 @@ class Directions extends Component {
           <GoogleMap
             defaultZoom={this.state.defaultZoom}
             center={this.state.center}
-            options={{ styles: mapStyles }}
+            options={{
+              styles: mapStyles,
+              disableDefaultUI: true
+            }}
             onClick={this.handleToggleMap}
             onZoomChanged={() => this.onZoomChanged()}
           >
@@ -70,19 +79,20 @@ class Directions extends Component {
                     place={place}
                     icon={MapMarker}
                     handleInfoClick={this.handleInfoClick}
+                    handleDirectionsClick={this.handleDirectionsClick}
                   />
                 )
               })}
             <DirectionRenderComponent
-              key={this.props.places[0] ? this.props.places[0].id : null}
-              from={{ lat: this.props.places[0].latitude, lng: this.props.places[0].longitude }}
-              to={{ lat: this.state.selectedLat, lng: this.state.selectedLng }}
+              key={this.state.selectedPlace ? this.state.selectedPlace.id : null}
+              from={{ lat: this.state.fromLat, lng: this.state.fromLng }}
+              to={{ lat: this.state.selectedPlace.latitude, lng: this.state.selectedPlace.longitude }}
             />
             <HeatmapLayer
               data={this.state.heatmapData}
               options={{
                 dissipating: false,
-                radius: 0.0013,
+                radius: 0.0014,
                 opacity: this.state.opacity,
                 gradient: [
                   'rgba(3, 0, 30, 0)',
@@ -95,7 +105,7 @@ class Directions extends Component {
             />
           </GoogleMap>
           <div className="btn-toolbar">
-            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: []})}>Clear Visualizer</button>
+            <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: [] })}>Clear Visualizer</button>
             <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapPopularity(this.state.places) })}>Popularity</button>
             <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapPriceLevel(this.state.places) })}>Price Level</button>
             <button type="button" className="btn btn-primary btn-lg" onClick={() => this.setState({ heatmapData: getHeatmapRating(this.state.places) })}>Rating</button>
@@ -117,7 +127,7 @@ export default compose(
   withProps({
     googleMapURL: G_API_URL,
     loadingElement: <div style={{ height: `100%` }} />,
-    containerElement: <div style={{ height: `600px` }} />,
+    containerElement: <div style={{ height: `630px` }} />,
     mapElement: <div style={{ height: `100%` }} />
   }),
   withScriptjs,
