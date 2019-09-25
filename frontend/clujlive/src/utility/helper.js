@@ -45,7 +45,7 @@ const getHeatmapRating = (places) => {
   for (var place of places) {
     heatmapPoints[heatmapPoints.length] = {
       location: new google.maps.LatLng(place.latitude, place.longitude),
-      weight: place.details.rating / 5
+      weight: (place.details.rating - 3) / 1.8 + 0.1
     };
   }
   console.log(heatmapPoints);
@@ -57,7 +57,7 @@ const getHeatmapPriceLevel = (places) => {
   for (var place of places) {
     heatmapPoints[heatmapPoints.length] = {
       location: new google.maps.LatLng(place.latitude, place.longitude),
-      weight: ((place.details.price_level + 1 ) / 5)
+      weight: (place.details.price_level[0] + 1) / 5
     };
   }
   console.log(heatmapPoints);

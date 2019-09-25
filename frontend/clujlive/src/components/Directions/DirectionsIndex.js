@@ -23,7 +23,11 @@ class Directions extends Component {
       isMapClicked: false,
       places: this.props.places,
       heatmapData: getHeatmapPopularity(this.props.places),
-      opacity: 0.95
+      opacity: 0.95,
+      selectedLat: this.props.places[1].latitude, 
+      selectedLng: this.props.places[1].longitude,
+      fromLat: 46.751339,
+      fromLng: 23.573630
     }
   }
 
@@ -71,8 +75,8 @@ class Directions extends Component {
               })}
             <DirectionRenderComponent
               key={this.props.places[0] ? this.props.places[0].id : null}
-              from={{ fromTitle: this.props.places[0].name, lat: this.props.places[0].latitude, lng: this.props.places[0].longitude }}
-              to={{ toTitle: this.props.places[1].name, lat: this.props.places[1].latitude, lng: this.props.places[1].longitude }}
+              from={{ lat: this.props.places[0].latitude, lng: this.props.places[0].longitude }}
+              to={{ lat: this.state.selectedLat, lng: this.state.selectedLng }}
             />
             <HeatmapLayer
               data={this.state.heatmapData}
