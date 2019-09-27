@@ -34,11 +34,11 @@ class InfoWindowContent extends Component {
           </p>
         </div>
         <p>
-          <div class="btn-group btn-group-justified">
-          <a class="btn btn-info" role="button" style={{ textAlign: 'center', fontSize: '90%' }} href={this.props.place.menuLink} target={'_blank'}>Menu</a>
-          <button type="button" className="btn btn-info" style={{ textAlign: 'center', fontSize: '90%'}} onClick={() => this.handleClick(this.props.place)}>Directions</button>
-          <a class="btn btn-info" role="button" style={{ textAlign: 'center', fontSize: '90%'}} href={this.props.place.reservationLink} target="_blank">Reservations</a>
-          <a class="btn btn-info" role="button" style={{ textAlign: 'center', fontSize: '90%' }} href={this.props.place.website} target={'_blank'}>Website</a>
+          <div className="btn-group btn-group-justified">
+          <a className="btn btn-info" role="button" style={{ textAlign: 'center', fontSize: '90%' }} href={this.props.place.menuLink} target={'_blank'}>Menu</a>
+          <a type="button" className="btn btn-info" style={{ textAlign: 'center', fontSize: '90%'}} onClick={() => this.handleClick(this.props.place)}>Directions</a>
+          <a className="btn btn-info" role="button" style={{ textAlign: 'center', fontSize: '90%'}} href={this.props.place.reservationLink} target="_blank">Reservations</a>
+          <a className="btn btn-info" role="button" style={{ textAlign: 'center', fontSize: '90%' }} href={this.props.place.website} target={'_blank'}>Website</a>
           </div>
         </p>
       </div>
